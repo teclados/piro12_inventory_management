@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="album py-4">
+        <div class="container">
+            <div class="row">
+                {% for item in items %}
+                    <div class="col-md-4">
+                        <a href="{% url 'management:item_detail' item.pk %}">
+                            <div class="card mb-4 shadow-sm" style="width: 18rem;">
+                                <img src="{{ item.photo.url }}" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">{{ item.name }}</h5>
+                                    <p class="card-text">가격: {{ item.price }}</p>
+                                    <p class="card-text">남은 수량: {{ item.quantity }}</p>
+                                    <button><a href="{% url 'management:button_down' item.pk %}">-</a></button>
+                                    <button><a href="{% url 'management:button_up' item.pk %}">+</a></button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor%}
+            </div>
+        </div>
+    </div>
+{% endblock %}

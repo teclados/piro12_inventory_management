@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="album py-4">
+        <div class="container">
+            <div class="row">
+                {% for client in clients %}
+                    <div class="col-md-4">
+                        <a href="{% url 'management:client_detail' client.pk %}">
+                            <div class="card mb-4 shadow-sm" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">{{ client.name }}</h5>
+                                    <p class="card-text">{{ client.phone }}</p>
+                                    <p class="card-text">{{ client.address }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor%}
+            </div>
+        </div>
+    </div>
+{% endblock %}

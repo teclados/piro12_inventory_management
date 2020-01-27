@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="out">
+    <div class="in">
+        <div class="row">
+            <div class="card shadow-sm" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ client.name }}</h5>
+                    <p class="card-text">{{ client.phone }}</p>
+                    <p class="card-text">{{ client.address }}</p>
+                    <br/>
+                    <p class="card-text">거래 상품 목록</p>
+                    {% for item in client.item.all %}
+                    <a href="{% url 'management:item_detail' item.pk %}">| {{ item.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="udl">
+            <button><a href="{% url 'management:client_edit' client.pk %}">수정</a></button>
+            <form action="{% url 'management:client_delete' client.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="삭제">
+            </form>
+            <button><a href="{% url 'management:client_list'%}">목록</a></button>
+        </div>
+    </div>
+</div>
+{% endblock %}

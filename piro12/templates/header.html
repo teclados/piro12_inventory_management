@@ -1,0 +1,19 @@
+{% load static %}
+<nav class="navbar shadow-sm">
+  <div class="container d-flex justify-content-between">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'management:item_list' %}">
+      <img class='logo' src="{% static 'piro12_logo.jpg'%}" width="60" height="60" alt=""/>
+    </a>
+    <ul class="nav justify-content-end" id="nav_body">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'management:item_new' %}">상품 등록</a>
+      </li>
+      <li class="nav-item client">
+        <a class="nav-link" href="{% url 'management:client_new' %}">거래처 등록</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'management:client_list' %}">거래처 관리</a>
+      </li>
+    </ul>
+  </div>
+</nav>

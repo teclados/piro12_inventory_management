@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="out">
+    <div class="in">
+        <div class="row">
+            <div class="card shadow-sm" style="width: 36rem;">
+                <img src="{{ item.photo.url }}" class="card-img-top" alt="" style="width: 15rem; margin: 0 auto">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text">가격: {{ item.price }}</p>
+                    <p class="card-text">남은 수량: {{ item.quantity }}</p>
+                    <p class="card-text">제품 설명: {{ item.content }}</p>
+                    <a class="card-text text-primary" href="{% url 'management:client_detail' item.client.pk %}">거래처: {{item.client }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="udl">
+            <button><a href="{% url 'management:item_edit' item.pk %}">수정</a></button>
+            <form action="{% url 'management:item_delete' item.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="삭제">
+            </form>
+            <button><a href="{% url 'management:item_list'%}">목록</a></button>
+        </div>
+    </div>
+</div>
+{% endblock %}
